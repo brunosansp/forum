@@ -10,8 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Topico {
@@ -22,7 +22,7 @@ public class Topico {
 	private String mensagem;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
 	
-	@Enumerated(EnumType.STRING) // PARA GRAVAR A CONSTANTE E NÃO A ORDEM QUE ESTÁ NO ENUM
+	@Enumerated(EnumType.STRING)
 	private StatusTopico status = StatusTopico.NAO_RESPONDIDO;
 	
 	@ManyToOne
@@ -31,14 +31,17 @@ public class Topico {
 	@ManyToOne
 	private Curso curso;
 	
-	@ManyToMany(mappedBy = "topico")
+	@OneToMany(mappedBy = "topico")
 	private List<Resposta> respostas = new ArrayList<>();
-
-	// public Topico(String titulo, String mensagem, Curso curso) {
-	// 	this.titulo = titulo;
-	// 	this.mensagem = mensagem;
-	// 	this.curso = curso;
-	// }
+	
+	public Topico() {
+	}
+	
+	public Topico(String titulo, String mensagem, Curso curso) {
+		this.titulo = titulo;
+		this.mensagem = mensagem;
+		this.curso = curso;
+	}
 
 	@Override
 	public int hashCode() {

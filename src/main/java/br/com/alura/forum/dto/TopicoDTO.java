@@ -6,10 +6,8 @@ import java.util.stream.Collectors;
 
 import br.com.alura.forum.model.Topico;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
 public class TopicoDTO {
 
 	private Long id;
